@@ -1,0 +1,3 @@
+[submodule "cffwk"]
+	path = cffwk
+	url = https://github.com/jlepage/cfFramework.git
