@@ -19,7 +19,7 @@ component accessors=true output=true {
 	}
 
 	public void function addTest(required string testObjectName) {
-		var cmpt = createObject('component', arguments.testObjectName);
+		var cmpt = createObject('component', arguments.testObjectName).init();
 		addTestObject(cmpt);
 	}
 

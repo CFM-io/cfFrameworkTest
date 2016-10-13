@@ -65,6 +65,9 @@ component output='false' accessors='true' extends='cffwk.App' {
 
 	public void function setRoutes() {
 		getRouter().addRoute(id='home', route='/home', controller='MainCtrl', action='home');
+		getRouter().addRoute(id='unit', route='/unit', controller='MainCtrl', action='unit');
+		getRouter().addRoute(id='testURL', route='/test/{id}/{revision}', controller='DefaultCtrl', action='test');
+		getRouter().addRoute(id='testRedirect', route='/redirectHard', controller='DefaultCtrl', action='testRedirectHard');
 	}
 
 }

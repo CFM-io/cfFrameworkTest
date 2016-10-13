@@ -16,17 +16,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ****/
-component output='false' extends='cffwk.controllers.AbstractController' accessors='true' {
+component output='false' extends='cffwk.controllers.DefaultCtrl' accessors='true' {
 	pageencoding 'utf-8';
 
-	public void function defaultAction() {
-		getRender().render('error.cfm', {'error' = 'Page not found'});
-	}
-
-	public void function home() {
+	public void function unit() {
 		var mySet = new cffwktest.sets.TestsSet();
 		mySet.run();
-		getRender().render('index.cfm', {'results' = mySet.getResults()}, 'default.cfm');
+		getRender().render('unit.cfm', {'results' = mySet.getResults()}, 'default.cfm');
 	}
 
 }

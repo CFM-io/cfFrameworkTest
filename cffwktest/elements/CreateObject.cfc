@@ -9,7 +9,7 @@ component extends='cffwktest.elements.AbstractElement' accessors=true output=tru
 	public void function run(required any args) {
 
 		try {
-			var obj = createObject('component', arguments.args.objectName);
+			var obj = createObject('component', arguments.args.objectName).init();
 
 
 		} catch ( any e ) {

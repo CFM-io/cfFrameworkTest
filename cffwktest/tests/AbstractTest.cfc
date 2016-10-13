@@ -21,7 +21,7 @@ component accessors=true output=true persistent=false {
 	}
 
 	private void function _checkTestIsCorrect() {
-		_checkFunctionExists('run');
+		_checkFunctionExists('config');
 	}
 
 	private boolean function _checkFunctionExists(required string functionName) {
@@ -32,7 +32,7 @@ component accessors=true output=true persistent=false {
 			}
 		}
 
-		throw('Your object should have the method ' & arguments.functionName);
+		throw('Your object ' & getName() & ' should have the method ' & arguments.functionName);
 	}
 
 	public boolean function shoulBeTrue(required any results) {
@@ -46,13 +46,13 @@ component accessors=true output=true persistent=false {
 	public void function config() {}
 
 	public void function addTest(required string element, struct args =  {}, boolean chained = false ) {
-		var cmpt = createObject('component', arguments.element);
+		var cmpt = createObject('component', arguments.element).init();
 		addTestObject(cmpt, arguments.args, arguments.chained);
 	}
 
 	public void function addTestObject(required component cmpt, struct args =  {}, boolean chained = false ) {
 		var curTest = {'component'= arguments.cmpt, 'args'= arguments.args, 'chained'= arguments.chained};
-		arrayAppend(getTestElements(), curTest);
+		arrayAppend(variables.testElements, curTest);
 	}
 
 
