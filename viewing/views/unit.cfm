@@ -1,6 +1,7 @@
 <h2>Welcome to cfFramework !</h2>
 
 <cfset keys = structKeyArray(results) />
+<!----cfdump var="#getMetaData(mySet)#" /---->
 
 <table>
 <cfoutput>
@@ -9,8 +10,8 @@
 		<th colspan="3">#key#</th>
 	</tr>
 	<tr>
-		<td class="title">Name</td>
 		<td class="title">Status</td>
+		<td class="title">Name</td>
 		<td class="title">Error Msg</td>
 	</tr>
 	<cfloop array="#results[key]#" index="element">

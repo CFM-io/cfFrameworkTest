@@ -20,9 +20,10 @@ component output='false' extends='cffwk.controllers.DefaultCtrl' accessors='true
 	pageencoding 'utf-8';
 
 	public void function unit() {
-		var mySet = new cffwktest.sets.TestsSet();
+		var mySet = get('TestsSet'); //new cffwktest.sets.TestsSet();
+
 		mySet.run();
-		getRender().render('unit.cfm', {'results' = mySet.getResults()}, 'default.cfm');
+		getRender().render('unit.cfm', {'results' = mySet.getResults(), 'mySet' = mySet}, 'default.cfm');
 	}
 
 }

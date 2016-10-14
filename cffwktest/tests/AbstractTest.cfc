@@ -1,13 +1,28 @@
-/**
- * AbstractTest
- *
- * @author JLepage
- * @date 13/10/16
- **/
+/*****
+
+Copyright (c) 2016, Jerome Lepage (j@cfm.io)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+****/
 component accessors=true output=true persistent=false {
 
-	property type="array" name="testElements";
-	property type="array" name="results";
+	property type='cffwk.base.conf.Config' name='Config';
+	property type='component' name='beanFactory';
+
+	property type='array' name='testElements';
+	property type='array' name='results';
 
 	public cffwktest.tests.AbstractTest function init() {
 		_checkTestIsCorrect();
@@ -21,7 +36,7 @@ component accessors=true output=true persistent=false {
 	}
 
 	private void function _checkTestIsCorrect() {
-		_checkFunctionExists('config');
+		_checkFunctionExists('prepare');
 	}
 
 	private boolean function _checkFunctionExists(required string functionName) {
@@ -43,10 +58,10 @@ component accessors=true output=true persistent=false {
 		return false;
 	}
 
-	public void function config() {}
+	public void function prepare() {}
 
 	public void function addTest(required string element, struct args =  {}, boolean chained = false ) {
-		var cmpt = createObject('component', arguments.element).init();
+		var cmpt = getBeanFactory().getBean(arguments.element);
 		addTestObject(cmpt, arguments.args, arguments.chained);
 	}
 
@@ -63,8 +78,12 @@ component accessors=true output=true persistent=false {
 		for (var i = 1; i <= arrayLen(els); i++) {
 			var cmp = els[i].component;
 
-			if (!els[i].chained) {
+			if (els[i].chained) {
+				structAppend(args, els[i].args);
+
+			} else {
 				args = els[i].args;
+
 			}
 
 			args = cmp.run(args);

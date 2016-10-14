@@ -16,10 +16,28 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ****/
-component extends='cffwktest.sets.AbstractSet' accessors=true output=true {
+component extends='cffwktest.elements.AbstractElement' accessors=true output=true persistent=false {
 
-	public void function prepare() {
-		addTest('ObjectTest');
+	public any function run(required any args) {
+
+		var basePath = getDirectoryFromPath(getBaseTemplatePath());
+		var file = basePath & replace(arguments.args.filename, '.', getConfig().getFileSeparator(), 'all');
+
+		if (fileExists(file)) {
+			return arguments.args;
+		}
+
+		if (fileExists(file & '.cfc')) {
+			return arguments.args;
+		}
+
+		if (fileExists(file & '.cfm')) {
+			return arguments.args;
+		}
+
+		fail('CFML File ' & file & ' not found');
+		return arguments.args;
+
 	}
 
 

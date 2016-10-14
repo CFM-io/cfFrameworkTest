@@ -41,6 +41,10 @@ component output='false' accessors='true' extends='cffwk.App' {
 		//addParam('sessionUserBean', 'User');		// must implements cffwk.model.users.UserInterface
 		//addParam('sessionProfilBean', 'Profil');	// must implements cffwk.model.users.ProfilInterface
 
+		var iocPath = getConfig().getParam('iocPath');
+		iocPath = listAppend(iocPath, '/cffwktest');
+		addParam('iocPath', iocPath);
+
 
 		addParam('ApplicationName', 'MyOwnApplicationName');
 		addParam('ApplicationVersion', '1.0');

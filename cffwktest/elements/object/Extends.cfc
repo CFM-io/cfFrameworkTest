@@ -16,10 +16,18 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ****/
-component extends='cffwktest.sets.AbstractSet' accessors=true output=true {
+component extends='cffwktest.elements.object.AbstractObject' accessors=true output=true persistent=false {
 
-	public void function prepare() {
-		addTest('ObjectTest');
+	public any function run(required any args) {
+
+		if (!isInstanceOf(arguments.args.object, arguments.args.className)) {
+			fail('Object ' & getMetaData(arguments.args.object).fullName & ' not implements/extends ' & arguments.args.className);
+		}
+
+
+		return arguments.args;
+
+
 	}
 
 

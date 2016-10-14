@@ -16,10 +16,15 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ****/
-component extends='cffwktest.sets.AbstractSet' accessors=true output=true {
+component extends='cffwktest.elements.object.AbstractObject' accessors=true output=true persistent=false {
 
-	public void function prepare() {
-		addTest('ObjectTest');
+	public any function run(required any args) {
+
+		if (!_isMethodExists(getMetaData(arguments.args.object), arguments.args.methodName)) {
+			fail('Object ' & getMetaData(arguments.args.object).fullName & ' has no method ' & arguments.args.methodName);
+		}
+
+		return arguments.args;
 	}
 
 
