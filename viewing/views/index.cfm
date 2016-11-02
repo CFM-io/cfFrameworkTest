@@ -36,7 +36,8 @@
 	<br/>
 	Context: #getContext()# - getContext()<br/>
 	<br/>
-	#getVersion()# - #getCopyRights()#
+	#getVersion()# - #getCopyRights()# - <br/>
+	#getMetaData( variables.iocAdapter.getIoc() ).fullName# <br/>
 
 	<br/>
 </cfoutput>

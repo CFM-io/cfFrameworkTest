@@ -25,6 +25,7 @@ component output='false' accessors='true' extends='cffwk.App' {
 	public void function setParams() {
 
 		addEnvRule( new cffwk.base.conf.elements.SimpleEnvRule(hostname = 'cffwk.local', name = 'debug') );
+		addEnvRule( new cffwk.base.conf.elements.SimpleEnvRule(hostname = 'cfwtest.local', name = 'debug') );
 		addEnvRule( new cffwk.base.conf.elements.SimpleEnvRule(hostname = 'cffwktest.local', name = 'debug') );
 		addEnvRule( new cffwk.base.conf.elements.SimpleEnvRule(ip = 'cfframework.net', name = 'prod') );
 

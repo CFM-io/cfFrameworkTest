@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 component accessors=true output=true persistent=false {
 
 	property type='cffwk.base.conf.Config' name='Config';
-	property type='component' name='beanFactory';
+	property type='cffwk.model.iocAdapters.iocAdapterInterface' name='iocAdapter';
 
 	property type='array' name='testElements';
 	property type='array' name='results';
@@ -61,7 +61,7 @@ component accessors=true output=true persistent=false {
 	public void function prepare() {}
 
 	public void function addTest(required string element, struct args =  {}, boolean chained = false ) {
-		var cmpt = getBeanFactory().getBean(arguments.element);
+		var cmpt = variables.iocAdapter.getobject(arguments.element);
 		addTestObject(cmpt, arguments.args, arguments.chained);
 	}
 

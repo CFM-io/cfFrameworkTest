@@ -22,10 +22,10 @@ component extends='cffwktest.tests.AbstractTest' accessors=true output=true pers
 
 		addTest(element = 'CFFileExists', args = {fileName= 'cffwk.base.conf.Config'}, chained = false);
 
-		addTest(element = 'CreateObject', args = {objectName= 'cffwk.base.conf.Config'}, chained = false);
-		addTest(element = 'ExtendsObject', args = {className= 'cffwk.base.conf.Route'}, chained = true);
-		addTest(element = 'MethodExistsObject', args = {methodName= 'loadParams'}, chained = true);
-		addTest(element = 'TestPropertyObject', args = {propertyName= 'env'}, chained = true);
+		addTest(element = 'object.Create', args = {objectName= 'cffwk.base.conf.Config'}, chained = false);
+		addTest(element = 'object.Extends', args = {className= 'cffwk.base.conf.Route'}, chained = true);
+		addTest(element = 'object.MethodExists', args = {methodName= 'loadParams'}, chained = true);
+		addTest(element = 'object.TestProperty', args = {propertyName= 'env'}, chained = true);
 
 
 
