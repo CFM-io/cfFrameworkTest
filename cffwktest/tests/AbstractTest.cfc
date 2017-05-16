@@ -20,6 +20,7 @@ component accessors=true output=true persistent=false {
 
 	property type='cffwk.base.conf.Config' name='Config';
 	property type='cffwk.model.iocAdapters.iocAdapterInterface' name='iocAdapter';
+	property type='cffwk.base.logs.Logger' name='logger';
 
 	property type='array' name='testElements';
 	property type='array' name='results';
@@ -61,11 +62,13 @@ component accessors=true output=true persistent=false {
 	public void function prepare() {}
 
 	public void function addTest(required string element, struct args =  {}, boolean chained = false ) {
+		//getLogger().debug('Add SubTest to test : ' & arguments.element, this);
 		var cmpt = variables.iocAdapter.getobject(arguments.element);
 		addTestObject(cmpt, arguments.args, arguments.chained);
 	}
 
 	public void function addTestObject(required component cmpt, struct args =  {}, boolean chained = false ) {
+		//getLogger().debug('Add TestObject to test : ' & getMetadata(arguments.cmpt).name, this);
 		var curTest = {'component'= arguments.cmpt, 'args'= arguments.args, 'chained'= arguments.chained};
 		arrayAppend(variables.testElements, curTest);
 	}
@@ -77,6 +80,8 @@ component accessors=true output=true persistent=false {
 
 		for (var i = 1; i <= arrayLen(els); i++) {
 			var cmp = els[i].component;
+
+			getLogger().debug('Run tests for component ' & getMetaData(cmp).name, this);
 
 			if (els[i].chained) {
 				structAppend(args, els[i].args);

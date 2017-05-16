@@ -20,6 +20,7 @@ component accessors=true output=true persistent=false {
 
 	property type='cffwk.base.conf.Config' name='Config';
 	property type='cffwk.model.iocAdapters.iocAdapterInterface' name='iocAdapter';
+	property type='cffwk.base.logs.Logger' name='logger';
 
 	property type='string' name='message';
 

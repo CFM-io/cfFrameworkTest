@@ -20,6 +20,7 @@ component accessors=true output=true {
 
 	property type='cffwk.base.conf.Config' name='Config';
 	property type='cffwk.model.iocAdapters.iocAdapterInterface' name='iocAdapter';
+	property type='cffwk.base.logs.Logger' name='logger';
 
 	property type='array' name='tests';
 	property type='struct' name='results';
@@ -27,12 +28,11 @@ component accessors=true output=true {
 	public cffwktest.sets.AbstractSet function init() {
 		variables.tests = arrayNew(1);
 		variables.results = structNew();
-
 		return this;
 	}
 
 	public void function addTest(required string testObjectName) {
-
+		getLogger().debug('Add TestSet to Set : ' & arguments.testObjectName, this);
 		var cmpt = variables.iocAdapter.getObject(arguments.testObjectName);
 		addTestObject(cmpt);
 	}
